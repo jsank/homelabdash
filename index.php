@@ -1,6 +1,11 @@
-<html>
+<?php
+  // grab the core
+  require_once('homelabdash.php');
+  
+  $HLD = new homelabdash();
+?><html>
 <head>
-<title>My Home Network</title>
+<title>HomeLab Dashboard</title>
 <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css'>
 
 <style>
@@ -66,6 +71,14 @@ a:active {
   color: white;
 }
 
+.degraded {
+  padding: 2px 5px 2px 5px;
+  margin: 0;
+  display: inline;
+  background: orange;
+  color: white;
+}
+
 .header {
   background: #444;
   width: 100%;
@@ -104,17 +117,6 @@ a:active {
 <!-- A PORT MUST BE OPEN FOR THIS TO WORK -->
 <!-- MOST COMMON PORTS ARE 22 & 80 -->
 
-<?php
- function GetServerStatus($site, $port)
- {
- $status = array("<div class='online'>Online</div>", "<div class='offline'>Offline</div>");
- $fp = @fsockopen($site, $port, $errno, $errstr, 2);
- if (!$fp) {
-    return $status[1];
-  } else  { return $status[0];}
- }
-?>
-
 
 <!-- BEGIN BOOKMARK HEADER -->
 <!-- REMOVE IF YOU DO NOT WANT ACTIVE -->
@@ -141,22 +143,15 @@ a:active {
 <!-- BEGIN CONTENT -->
 <!-- BEGIN CONTENT -->
 
-<h1>My Home Network</h1>
+<h1>HomeLab Dashboard</h1>
 
-<div class="square" style="background: aqua;">
- <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
-  <strong>Name:</strong> Device Name<br />
-  <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
-  <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
- </div>
-</div>
-
+<?php $HLD->CheckAllDevices(); ?>
+<!--
 <div class="square" style="background: #BE81F7;">
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('10.0.0.18',3389); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -165,7 +160,7 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -174,7 +169,7 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -183,7 +178,7 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -192,7 +187,7 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -201,7 +196,7 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -210,7 +205,7 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -219,7 +214,7 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
@@ -228,10 +223,11 @@ a:active {
  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">
   <strong>Name:</strong> Device Name<br />
   <strong>IP:</strong> 192.168.0.0<br />
-  <strong>Status:</strong> <?php echo GetServerStatus('192.168.0.0',80); ?><br />
+  <strong>Status:</strong> <!?php echo $HLD->GetServerStatus('192.168.0.0',80); ?><br />
   <strong>Access:</strong> <a href="http://192.168.0.0" target="_new">Admin</a>
  </div>
 </div>
+-->
 
 <!-- END CONTENT -->
 <!-- END CONTENT -->

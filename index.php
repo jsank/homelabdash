@@ -114,24 +114,13 @@ a:active {
 </head>
 <body>
 
-<!-- A PORT MUST BE OPEN FOR THIS TO WORK -->
-<!-- MOST COMMON PORTS ARE 22 & 80 -->
-
-
 <!-- BEGIN BOOKMARK HEADER -->
 <!-- REMOVE IF YOU DO NOT WANT ACTIVE -->
 <div class="header" align="center">
  <div style="width: 855px;" align="center">
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a> | 
-  <a href="#" target="_newtop1">Bookmark</a>
+  <a href="https://www.reddit.com/r/homelab/" target="_newtop1">/r/homelab</a> | 
+  <a href="http://app.plex.tv/web/app" target="_newtop1">Plex</a> | 
+  <a href="http://www.imdb.com/" target="_newtop1">IMDb</a>
  </div>
 </div>
 <!-- END BOOKMARK HEADER -->

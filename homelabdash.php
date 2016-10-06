@@ -40,20 +40,29 @@ class homelabdash {
   // OutputStatus(<status>) - Output the status in HTML
   function OutputStatus($STATUS) {
     if ($STATUS == 0) {
-      return '<div class="online">Online</div>';
-    } elseif ($STATUS == 1) {
       return '<div class="offline">Offline</div>';
+    } elseif ($STATUS == 1) {
+      return '<div class="online">Online</div>';
     } else {
       return '<div class="degraded">Degraded</div>';
     }
   }
   
-  // GetServerStatus(<device-array>) - Checks all ports on server and comes up with a status
-  function GetDeviceStatus($DEVICE) {
+  // GetServerStatus(<device-array>, <show-output>) - Checks all ports on server and comes up with a status
+  // - If <show-output> is true, it will output a list of services
+  function GetDeviceStatus($DEVICE, $OUT=0) {
     // loop through all ports
-    foreach ($DEVICE['port'] as $NAME => $PORT) {
+    foreach ($DEVICE['device_service'] as $NAME => $PORT) {
       // check if port is open
-      $STATUS[$this->GetPortStatus($DEVICE['device_ip'], $PORT)] = 1;
+      $TMP = $this->GetPortStatus($DEVICE['device_ip'], $PORT);
+
+      // write the variable status
+      $STATUS[$TMP] = 1;
+      
+      // output if required
+      if ($OUT) {
+        echo '- '. $NAME .' '. $this->OutputStatus($TMP) . '<br />' . PHP_EOL;
+      }
     }
 
     if (sizeof($STATUS) == 2) {
@@ -79,9 +88,11 @@ class homelabdash {
     echo '<div class="square" style="background: '. $this->GetRandomColor() .';">' . PHP_EOL;
     echo '  <div style="float: left; margin: 15px; text-align: left; line-height: 25px;">' . PHP_EOL;
     echo '    <strong>Name:</strong> '. $DEVICE['device_name'] .'<br />'. PHP_EOL;
+    echo '    <strong>Description:</strong> '. $DEVICE['device_desc'] .'<br />'. PHP_EOL;
     echo '    <strong>IP:</strong> '. $DEVICE['device_ip'] .'<br />'. PHP_EOL;
     echo '    <strong>Status:</strong> '. $this->OutputStatus($this->GetDeviceStatus($DEVICE)) .'<br />'. PHP_EOL;
-    echo '    <strong>Access:</strong>'. PHP_EOL;
+    echo '    <strong>Services:</strong> ' . implode(', ', array_keys($DEVICE['device_service'])) . PHP_EOL;
+
     echo '  </div>'. PHP_EOL;
     echo '</div>'. PHP_EOL;
   }
@@ -93,7 +104,4 @@ class homelabdash {
     }
   }
 }
-
-$a = new homelabdash();
-
 ?>

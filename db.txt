@@ -1,0 +1,20 @@
+CREATE TABLE hld_servers (
+  server_id INT AUTO_INCREMENT,
+  server_name VARCHAR(100),
+  server_friendly VARCHAR(100),
+  server_desc TINYTEXT,
+  PRIMARY KEY(server_id)
+);
+
+CREATE TABLE hld_ports (
+  port_id INT AUTO_INCREMENT,
+  server_id 
+  port_name
+  port_number
+
+);
+
+CREATE TABLE hld_commonports (
+
+
+);
